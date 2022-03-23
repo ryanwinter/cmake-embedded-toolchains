@@ -19,7 +19,7 @@ set(CMAKE_COMMON_FLAGS "${CPU_FLAGS} ${VFP_FLAGS} -gdwarf-4 -ffunction-sections 
 set(CMAKE_C_FLAGS_INIT "${CMAKE_COMMON_FLAGS}")
 set(CMAKE_CXX_FLAGS_INIT "${CMAKE_COMMON_FLAGS}")
 set(CMAKE_ASM_FLAGS_INIT "${CMAKE_COMMON_FLAGS}")
-set(CMAKE_EXE_LINKER_FLAGS_INIT "${LD_FLAGS} --callgraph --remove --info summarysizes --info unused --symbols --xref")
+set(CMAKE_EXE_LINKER_FLAGS_INIT "${LD_FLAGS} ${LINK_FLAGS} --callgraph --remove --info summarysizes --info unused --symbols --xref")
 
 set(CMAKE_C_FLAGS_DEBUG_INIT "-O0")
 set(CMAKE_CXX_ASM_FLAGS_DEBUG_INIT "-O0")

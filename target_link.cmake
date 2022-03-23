@@ -33,6 +33,7 @@ function(target_link TARGET LINKER_SCRIPT)
         add_custom_target(${TARGET}.bin ALL
             DEPENDS ${TARGET}
             COMMAND ${CMAKE_FROMELF} --bin --output=${TARGET}.bin ${TARGET}.elf
+            COMMAND ${CMAKE_FROMELF} --i32combined --output=${TARGET}.hex ${TARGET}.elf
         )
     else()
         message(FATAL_ERROR "Unknown CMAKE_C_COMPILER_ID ${CMAKE_C_COMPILER_ID}")
