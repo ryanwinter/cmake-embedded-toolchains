@@ -21,8 +21,19 @@ function(target_link TARGET LINKER_SCRIPT)
         )
         add_custom_target(${TARGET}.bin ALL
             DEPENDS ${TARGET}
-            COMMAND ${CMAKE_IAR_ELFTOOL} --bin ${TARGET}.elf ${TARGET}.bin)
+            COMMAND ${CMAKE_IAR_ELFTOOL} --bin ${TARGET}.elf ${TARGET}.bin
+        )
 
+    elseif(CMAKE_C_COMPILER_ID STREQUAL "ARMClang")
+        target_link_options(${TARGET} 
+            PRIVATE 
+                --scatter ${LINKER_SCRIPT}.sct
+                --map
+        )
+        add_custom_target(${TARGET}.bin ALL
+            DEPENDS ${TARGET}
+            COMMAND ${CMAKE_FROMELF} --bin --output=${TARGET}.bin ${TARGET}.elf
+        )
     else()
         message(FATAL_ERROR "Unknown CMAKE_C_COMPILER_ID ${CMAKE_C_COMPILER_ID}")
     endif()
